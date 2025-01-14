@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARLCULA-BOSTA</title>
+    <style>
+        header {
+            text-align: center;
+        }
+        h1 {
+            color: rgb(92, 28, 28);
+        }
+        main {
+            height:calc(100vh - 100px);
+            width: auto;
+            background-color: rgb(172, 255, 255);
+            border-radius: 20px;
+            padding-top: 10px;
+        }
+        .calc {
+            text-align: center;
+        }
+        .inputCalc {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        h4 {
+            margin-bottom: 1px;
+        }
+        .result {
+            text-align: center;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>KARLCULA-BOSTA</h1>
+    </header>
+    <main>
+       <div class="calc">
+            <h4>Salario: </h4>
+            <input class="inputCalc" type="text" id="CalcSalario" placeholder="R$ 0,00">
+            <h4>Horas trabalhadas por Semana: </h4>
+            <input class="inputCalc" type="time" id="CalcHoraTrabSem">
+            <h4>Tempo medio que fica no TRONO: </h4>
+            <input class="inputCalc" type="time" id="CalcHoraTrono"> 
+            <br><br>
+            <button id="btnCalc"> KARLCULAR </button>
+            <button id="btnLimp"> LIMPAR </button>
+       </div>
+       <hr>
+       <div class="result">
+            <H3>RESULTADO</H3>
+            <h4>Você ganha TCHANNES por Mes CAGANDO!</h4>
+       </div>
+    </main>
+    <script>
+        const btnCalc = document.getElementById("btnCalc");
+        const calcSalario = document.getElementById("CalcSalario");
+        const calcHoraTrabSem = document.getElementById("CalcHoraTrabSem");
+        const calcHoraTrono = document.getElementById("CalcHoraTrono");
+
+        btnCalc.addEventListener("click", () => {
+            alert(calcSalario.toString());
+        });
+    </script>
+</body>
+</html>
