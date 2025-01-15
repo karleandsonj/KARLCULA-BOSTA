@@ -1,75 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARLCULA-BOSTA</title>
+    <title>💩 KARLCULA-BOSTA 💩</title>
     <style>
         header {
             text-align: center;
         }
+
         h1 {
             color: rgb(92, 28, 28);
         }
+
         main {
-            height:calc(100vh - 100px);
+            height: calc(100vh - 100px);
             width: auto;
-            background-color: rgb(172, 255, 255);
+            background-color: rgb(133, 100, 100);
             border-radius: 20px;
             padding-top: 10px;
         }
+
         .calc {
             text-align: center;
         }
+
         .inputCalc {
             margin-top: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-align: center;
+            border-radius: 5px;
+            border: 1px solid black;
         }
+
         h4 {
+            color: rgb(255, 255, 255);
             margin-bottom: 1px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
+
         .result {
             text-align: center;
             font-size: 15px;
         }
+
+        button {
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            width: 150px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 5px;
+            color: rgb(255, 255, 255);
+            background-color: brown;
+        }
+
+        button:hover{
+            cursor: pointer;
+            background-color: rgb(187, 104, 104);
+        }
+
+        span {
+            color: red;
+        }
+
+        .result {
+            display: none;
+        }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>KARLCULA-BOSTA</h1>
+        <h1>💩 KARLCULA-BOSTA 💩</h1>
     </header>
     <main>
-       <div class="calc">
+        <div class="calc">
             <h4>Salario: </h4>
-            <input class="inputCalc" type="text" id="CalcSalario" placeholder="R$ 0,00">
+            <input class="inputCalc" type="number" id="calcSalario" placeholder="R$ 0,00">
             <h4>Horas trabalhadas por Semana: </h4>
-            <input class="inputCalc" type="time" id="CalcHoraTrabSem">
+            <input class="inputCalc" type="number" id="CalcHoraTrabSem" placeholder="Horas">
             <h4>Tempo medio que fica no TRONO: </h4>
-            <input class="inputCalc" type="time" id="CalcHoraTrono"> 
+            <input class="inputCalc" type="number" id="CalcHoraTrono" placeholder="Minutos">
             <br><br>
             <button id="btnCalc"> KARLCULAR </button>
             <button id="btnLimp"> LIMPAR </button>
-       </div>
-       <hr>
-       <div class="result">
+        </div>
+        <div class="result" id="result">
+            <hr>
             <H3>RESULTADO</H3>
-            <h4>Você ganha TCHANNES por Mes CAGANDO!</h4>
-       </div>
+            <h4>Você ganha <span id="resultadoSem">R$ 00,00</span> por Semana CAGANDO,
+                <br>
+                e
+                <br>
+                por Mês você ganha em torno de <span id="resultadoMes">R$ 00,00</span>!
+            </h4>
+        </div>
     </main>
     <script>
-        const btnCalc = document.getElementById("btnCalc");
-        const calcSalario = document.getElementById("CalcSalario");
-        const calcHoraTrabSem = document.getElementById("CalcHoraTrabSem");
-        const calcHoraTrono = document.getElementById("CalcHoraTrono");
 
-        let calcSalario1 = calcSalario.value;
-        let calcHoraTrabSem1 = calcHoraTrabSem.value;
-        let calcHoraTrono1 = calcHoraTrono.value;
+        let calcHoraTrabSem = document.getElementById("CalcHoraTrabSem");
+        let calcHoraTrono = document.getElementById("CalcHoraTrono");
+        let calcSalario = document.getElementById("calcSalario");
+        let resultadoMes = document.getElementById("resultadoMes");
+        let resultadoSem = document.getElementById("resultadoSem");
+        let result = document.getElementById("result");
+
+        const btnCalc = document.getElementById("btnCalc");
+        const btnLimp = document.getElementById("btnLimp");
 
         btnCalc.addEventListener("click", () => {
-            alert(calcHoraTrabSem1);
+
+            if (calcSalario.value === '' || calcHoraTrono.value === '' || calcHoraTrabSem.value === '') {
+                alert('PREENCHA OS CAMPOS!');
+            } else {
+                result.style.display = 'block';
+
+                const salario = parseFloat(calcSalario.value) || 0;
+                const horaTrabSem = parseInt(calcHoraTrabSem.value) || 0;
+                const minTrono = parseInt(calcHoraTrono.value) || 0;
+
+                let resMinSem = parseFloat(horaTrabSem * 60);
+                let totMinPorMes = parseFloat(resMinSem * 4.33);
+                let resTot = parseFloat(salario / totMinPorMes);
+                let resSemanal = parseFloat((minTrono * resTot) * 5.50);
+                let resMensal = parseFloat(resSemanal * 4.33);
+
+
+                resultadoMes.innerHTML = `R$ ${resMensal.toFixed(2)}`;
+                resultadoSem.innerHTML = `R$ ${resSemanal.toFixed(2)}`;
+            }
+        });
+
+        btnLimp.addEventListener("click", () => {
+            resultadoMes.innerHTML = "R$ 00,00";
+            resultadoSem.innerHTML = "R$ 00,00";
+            calcSalario.value = "";
+            calcHoraTrabSem.value = "";
+            calcHoraTrono.value = "";
+            result.style.display = 'none';
         });
     </script>
 </body>
+
 </html>
