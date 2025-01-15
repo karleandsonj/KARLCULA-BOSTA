@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💩 KARLCULA-BOSTA 💩</title>
     <style>
+        body {
+            position: relative;
+            height: 100%;
+            width: auto;
+        }
+
         header {
             text-align: center;
         }
@@ -15,11 +21,14 @@
         }
 
         main {
-            height: calc(100vh - 100px);
-            width: auto;
+            position: relative;
+            height: calc(100vh - 200px);
             background-color: rgb(133, 100, 100);
-            border-radius: 20px;
+            border-radius: 10px;
             padding-top: 10px;
+            padding-bottom: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
         }
 
         .calc {
@@ -37,7 +46,7 @@
         h4 {
             color: rgb(255, 255, 255);
             margin-bottom: 1px;
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
 
         .result {
@@ -46,7 +55,7 @@
         }
 
         button {
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
             width: 150px;
             margin-left: 5px;
             margin-right: 5px;
@@ -55,7 +64,7 @@
             background-color: brown;
         }
 
-        button:hover{
+        button:hover {
             cursor: pointer;
             background-color: rgb(187, 104, 104);
         }
@@ -67,6 +76,51 @@
         .result {
             display: none;
         }
+
+        footer {
+            text-align: center;
+            height: 80px;
+            width: auto;
+            left: 11px;
+            right: 11px;
+            bottom: 10px;
+            margin-top: 2px;
+            border-radius: 10px;
+            background-color: burlywood;
+            position: fixed;
+            padding: 0.1px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        #pretin{
+            display: none;
+            background-color: rgba(0, 0, 0, 0.534);
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 998;
+        }
+        #alerta{
+            display: none;
+            position: absolute;
+            background-color: rgb(90, 63, 63);
+            text-align: center;
+            padding: 30px;
+            width: 300px;
+            z-index: 999;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid black;
+            color: azure;
+        }
+        #TAOK{
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -74,6 +128,11 @@
     <header>
         <h1>💩 KARLCULA-BOSTA 💩</h1>
     </header>
+    <div id="pretin"></div>
+    <span id="alerta">
+        TEM CAMPO FALTANDO PARÇA, FAZ ESSA PARADA DIREITO! 💩
+        <button id="TAOK"> TAOKAY! </button>
+    </span>
     <main>
         <div class="calc">
             <h4>Salario: </h4>
@@ -97,6 +156,13 @@
             </h4>
         </div>
     </main>
+    <footer>
+        <p>Site criado por Karl com intuito de lhe mostrar que se você
+            continuar cagando a rodo no trabalho jaja terá um imposto pra
+            pra bosta... então... é isso ai... na verdade to nem ai so queria
+            que você continua-se lendo mesmo... 
+        </p>
+    </footer>
     <script>
 
         let calcHoraTrabSem = document.getElementById("CalcHoraTrabSem");
@@ -105,14 +171,18 @@
         let resultadoMes = document.getElementById("resultadoMes");
         let resultadoSem = document.getElementById("resultadoSem");
         let result = document.getElementById("result");
+        let pretin = document.getElementById("pretin");
+        let alerta = document.getElementById("alerta");
 
         const btnCalc = document.getElementById("btnCalc");
         const btnLimp = document.getElementById("btnLimp");
+        const taOK = document.getElementById("TAOK");
 
         btnCalc.addEventListener("click", () => {
 
             if (calcSalario.value === '' || calcHoraTrono.value === '' || calcHoraTrabSem.value === '') {
-                alert('PREENCHA OS CAMPOS!');
+                alerta.style.display = 'block';
+                pretin.style.display = 'block';
             } else {
                 result.style.display = 'block';
 
@@ -140,6 +210,12 @@
             calcHoraTrono.value = "";
             result.style.display = 'none';
         });
+
+        taOK.addEventListener("click", () => {
+            alerta.style.display = 'none';
+            pretin.style.display = 'none';
+        });
+
     </script>
 </body>
 
